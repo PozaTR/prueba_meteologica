@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
-import Chart from './Chart';
+import ChartInfo from './ChartInfo';
 import LastInfo from './LastInfo';
 import '../styles/components/liveInfo.scss';
 
@@ -10,7 +10,7 @@ const LiveInfo = (props) => {
   return(
       <div>
         <Link to='minute'>Ir</Link>
-        <Chart/>
+        <ChartInfo />
         <LastInfo />
       </div>
   )
