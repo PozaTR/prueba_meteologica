@@ -9,5 +9,18 @@
 body {
   color: $dark;
   font-family: 'Source Sans Pro', sans-serif;
+  min-height: 100vh;
+}
+
+#root {
+  align-items: stretch;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.wrapper {
+  margin: 0 auto;
+  max-width: $wrapperWidth;
 }
 

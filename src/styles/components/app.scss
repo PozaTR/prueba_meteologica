@@ -1,13 +1,17 @@
 @import '../core/variables';
+$headerHeight: $gap-xl;
 
 .header {
   align-items: center;
   background: transparent;
   background: linear-gradient(to left, $secundary, $primary-dark);
   display: flex;
+  flex-wrap: wrap;
   font-size: 16px;
   justify-content: space-between;
-  padding: 16px;
+  line-height: 1;
+  min-height: $headerHeight;
+  padding: $gap-md;
   position: fixed;
   width: 100%;
   z-index: 1;
@@ -16,27 +20,51 @@
     color: $white;
     font-size: 24px;
     text-transform: uppercase;
+    flex-basis: 100%;
+
+    @media all and (min-width: $tablet) {
+      flex-basis: auto;
+    }
+  }
+
+  &__menu {
+    padding-top: $gap-md;
+    flex-basis: 100%;
+
+    @media all and (min-width: $tablet) {
+      padding-top: 0;
+      flex-basis: auto;
+    }
   }
 
   &__link {
     color: $white;
     font-weight: bold;
-    padding: 0 16px;
     text-decoration: none;
-  }
+    transition: color 0.2s;
 
-  &__link:hover {
-    color: $primary;
+    &:hover {
+      color: $primary;
+    }
+
+    &:first-child {
+      margin-right: $gap-md;
+    }
+
+    &:last-child {
+      margin-left: $gap-md;
+    }
   }
 }
 
 .main {
-  padding-top: 63px;
+  flex-grow: 1;
+  padding-top: $headerHeight;
 }
 
 .footer {
   color:rgba(255, 255, 255, 0.3);
   background-color: $secundary-dark;
-  padding: 16px;
+  padding: $gap-md;
   text-align: center;
 }

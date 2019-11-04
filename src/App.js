@@ -1,5 +1,5 @@
 import React from 'react';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 import LiveInfo from './components/LiveInfo';
 import MinuteInfo from './components/MinuteInfo';
 import './styles/components/app.scss';
@@ -15,16 +15,16 @@ class App extends React.Component {
 
  render() {
    return(
-     <div>
+     <>
        <header className="header">
         <h1 className="header__title">Meteológica S.A</h1>
         <nav className="header__menu">
-          <a className="header__link" href="">live stream</a>
-          <a className="header__link" href="">summary by minute</a>
+          <Link className="header__link" to='/'>live stream</Link>
+          <Link className="header__link" to='/minute'>summary by minute</Link>
          </nav>
        </header>
        <main className="main">
-         <React.Fragment>
+         <div className="wrapper">
             <Switch>
               <Route exact path='/' render={RouterProps => (
                 <LiveInfo />
@@ -35,12 +35,12 @@ class App extends React.Component {
               )}>
               </Route>
             </Switch>
-         </React.Fragment>
+         </div>
        </main>
        <footer className="footer">
          <span className="footer__copyright">© 2019 Meteologica S.A.</span>
        </footer>
-     </div>
+     </>
    )
  }
 }
