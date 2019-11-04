@@ -1,10 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import '../styles/minuteInfo.scss';
 
 const MinuteInfo = (props) => {
   return(
-      <div>MinuteInfo</div>
+      <React.Fragment>
+        <Link to='/'>Volver</Link>
+        <div>MinuteInfo</div>
+      </React.Fragment>
   )
 }
 
