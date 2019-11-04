@@ -16,7 +16,13 @@ class App extends React.Component {
  render() {
    return(
      <div>
-       <header className="header"></header>
+       <header className="header">
+        <h1 className="header__title">Meteológica S.A</h1>
+        <nav className="header__menu">
+          <a className="header__link" href="">live stream</a>
+          <a className="header__link" href="">summary by minute</a>
+         </nav>
+       </header>
        <main className="main">
          <React.Fragment>
             <Switch>
