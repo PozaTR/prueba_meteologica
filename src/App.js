@@ -16,8 +16,8 @@ class App extends React.Component {
  render() {
    return(
      <div>
-       <header></header>
-       <main>
+       <header className="header"></header>
+       <main className="main">
          <React.Fragment>
             <Switch>
               <Route exact path='/' render={RouterProps => (
@@ -31,7 +31,9 @@ class App extends React.Component {
             </Switch>
          </React.Fragment>
        </main>
-       <footer></footer>
+       <footer className="footer">
+         <span className="footer__copyright">© 2019 Meteologica S.A.</span>
+       </footer>
      </div>
    )
  }
