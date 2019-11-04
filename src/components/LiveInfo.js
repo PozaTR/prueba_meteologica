@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
 import Chart from './Chart';
 import LastInfo from './LastInfo';
-import '../styles/liveInfo.scss';
+import '../styles/components/liveInfo.scss';
 
 const LiveInfo = (props) => {
 

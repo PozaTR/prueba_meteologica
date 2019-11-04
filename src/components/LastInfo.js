@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import '../styles/lastInfo.scss';
+import '../styles/components/lastInfo.scss';
 
 const LastInfo = (props) => {
 

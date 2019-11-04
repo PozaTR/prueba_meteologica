@@ -2,7 +2,7 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import LiveInfo from './components/LiveInfo';
 import MinuteInfo from './components/MinuteInfo';
-import './styles/app.scss';
+import './styles/components/app.scss';
 
 class App extends React.Component {
  constructor(props) {
