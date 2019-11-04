@@ -1,26 +1,48 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import { Switch, Route, Link } from 'react-router-dom';
+import LiveInfo from './components/LiveInfo';
+import MinuteInfo from './components/MinuteInfo';
+import './styles/components/app.scss';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+ constructor(props) {
+   super(props)
+
+   this.state = {
+
+   }
+ }
+
+ render() {
+   return(
+     <>
+       <header className="header">
+        <h1 className="header__title">Meteológica S.A</h1>
+        <nav className="header__menu">
+          <Link className="header__link" to='/'>live stream</Link>
+          <Link className="header__link" to='/minute'>summary by minute</Link>
+         </nav>
+       </header>
+       <main className="main">
+         <div className="wrapper">
+            <Switch>
+              <Route exact path='/' render={RouterProps => (
+                <LiveInfo />
+              )}>
+              </Route>
+              <Route path='/minute' render={RouterProps => (
+                <MinuteInfo />    
+              )}>
+              </Route>
+            </Switch>
+         </div>
+       </main>
+       <footer className="footer">
+         <span className="footer__copyright">© 2019 Meteologica S.A.</span>
+       </footer>
+     </>
+   )
+ }
 }
 
 export default App;
