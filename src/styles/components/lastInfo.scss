@@ -1,0 +1,22 @@
+@import '../core/variables';
+@import '../core/mixins';
+
+.lastInfo {
+  @include flex-column;
+}
+
+.lastInfo__icon {
+  background-color: $white;
+  border-radius: 50%;
+  box-shadow: 1px 1px 2px $ligth;
+  color: $primary;
+  font-size: 64px;
+  height: 200px;
+  width: 200px;
+  @include flex-center;
+}
+
+.lastInfo__information {
+  color: $white;
+  font-size: 64px;
+}
