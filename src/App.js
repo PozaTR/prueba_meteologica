@@ -4,13 +4,23 @@ import LiveInfo from './components/LiveInfo';
 import MinuteInfo from './components/MinuteInfo';
 import './styles/components/app.scss';
 
+
 class App extends React.Component {
  constructor(props) {
    super(props)
+   
+   this.json = require('./service/data.json');
 
    this.state = {
-
+      data: {}
    }
+ }
+
+ componentDidMount() {
+  console.log(this.json)
+   this.setState({
+      data: this.json
+   })
  }
 
  render() {
