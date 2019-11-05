@@ -1,11 +1,8 @@
 @import '../core/variables';
 @import '../core/mixins';
 
-.lastInfo__container {
-  background-color: $ligth;
-  padding: $gap-lg;
-  flex-direction: column;
-  @include flex-center;
+.lastInfo {
+  @include flex-column;
 }
 
 .lastInfo__icon {
@@ -15,7 +12,6 @@
   color: $primary;
   font-size: 64px;
   height: 200px;
-  padding: $gap-md;
   width: 200px;
   @include flex-center;
 }

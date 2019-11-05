@@ -24,7 +24,7 @@ class App extends React.Component {
          </nav>
        </header>
        <main className="main">
-         <div className="wrapper">
+         <div>
             <Switch>
               <Route exact path='/' render={RouterProps => (
                 <LiveInfo />

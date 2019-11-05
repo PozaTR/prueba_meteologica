@@ -7,7 +7,7 @@ $headerHeight: $gap-xl;
   background: linear-gradient(to left, $secundary, $primary-dark);
   display: flex;
   flex-wrap: wrap;
-  font-size: 16px;
+  font-size: 18px;
   justify-content: space-between;
   line-height: 1;
   min-height: $headerHeight;
@@ -18,7 +18,7 @@ $headerHeight: $gap-xl;
 
   &__title {
     color: $white;
-    font-size: 24px;
+    font-size: 32px;
     text-transform: uppercase;
     flex-basis: 100%;
 
