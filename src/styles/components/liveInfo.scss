@@ -2,9 +2,7 @@
 @import '../core/mixins';
 
 .lastInfo__title {
-  color: $white;
-  font-size: 56px;
-  font-weight: 900;
+  @include section-title;
 }
 
 .lastInfo__wrap {

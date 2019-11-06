@@ -12,3 +12,10 @@
   flex-direction: column;
   justify-content: center;
 }
+
+@mixin section-title {
+  color: rgba($secundary-dark, 0.9);
+  font-size: 56px;
+  font-weight: 900;
+  padding: $gap-md;
+}
