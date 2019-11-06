@@ -56,7 +56,7 @@ class ChartInfo extends React.Component {
   render() {
     return(
       <div className="chartInfo__container">
-        <Line className="chartInfo__temperature" data={data}/>
+        <Line className="chartInfo__data" data={data}/>
       </div>
   )
   }
