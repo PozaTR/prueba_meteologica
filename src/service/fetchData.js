@@ -12,8 +12,4 @@ class fetchData {
   }
 }
 
-  const service = new fetchData()
-    service.fetch().then(response => 
-    console.log(response))
-
 export default fetchData;

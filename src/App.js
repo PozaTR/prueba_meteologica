@@ -5,7 +5,7 @@ import LiveInfo from './components/LiveInfo';
 import MinuteInfo from './components/MinuteInfo';
 import './styles/components/app.scss';
 
-
+const service = new fetchData()
 class App extends React.Component {
  constructor(props) {
    super(props)
@@ -16,8 +16,14 @@ class App extends React.Component {
  }
 
  componentDidMount() {
-   this.setState({
-   })
+   setInterval(() => {
+    service.fetch().then(response => 
+      console.log(response))
+      const test = {...response}
+      this.setState({
+        data: test
+       })
+  }, 5000);
  }
 
  render() {
