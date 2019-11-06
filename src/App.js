@@ -1,5 +1,6 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
+import fetchData from './service/fetchData';
 import LiveInfo from './components/LiveInfo';
 import MinuteInfo from './components/MinuteInfo';
 import './styles/components/app.scss';
@@ -8,8 +9,6 @@ import './styles/components/app.scss';
 class App extends React.Component {
  constructor(props) {
    super(props)
-   
-   this.json = require('./service/data.json');
 
    this.state = {
       data: {}
@@ -17,9 +16,7 @@ class App extends React.Component {
  }
 
  componentDidMount() {
-  console.log(this.json)
    this.setState({
-      data: this.json
    })
  }
 
