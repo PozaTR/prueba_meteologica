@@ -11,10 +11,6 @@ class App extends React.Component {
    super(props)
 
    this.state = {
-      liveData: {
-        power: [],
-        temperature: [],
-      },
       lastPowerInfo: {},
       lastTemperatureInfo: {},
       powerInfo: [],
@@ -27,22 +23,18 @@ class App extends React.Component {
    setInterval(() => {
     meteoService.fetch().then(resp => {
       this.setState(prevState => {
-        const { liveData: prevLiveData } = prevState;
-        prevLiveData.power.push(resp.power);
-        prevLiveData.temperature.push(resp.temperature);
-
-        const powerValue = prevLiveData.power.map(power => power.value);
-        const temperatureValue = prevLiveData.temperature.map(temperature => temperature.value);
-        const time = prevLiveData.power.map(power => power.time)
-
+        const {
+          powerInfo: prevPowerInfo, 
+          temperatureInfo: prevTemperatureInfo, 
+          time: prevTime
+         } = prevState;
 
         return {
-          liveData: prevLiveData,
           lastPowerInfo: resp.power,
           lastTemperatureInfo: resp.temperature,
-          powerInfo: powerValue,
-          temperatureInfo: temperatureValue,
-          time: time
+          powerInfo: [...prevPowerInfo, resp.power.value],
+          temperatureInfo: [...prevTemperatureInfo, resp.temperature.value],
+          time: [...prevTime, resp.power.time]
          }
        })
     })
@@ -65,7 +57,13 @@ class App extends React.Component {
          <div>
             <Switch>
               <Route exact path='/'>
-                <LiveInfo powerInfo={powerInfo} temperatureInfo={temperatureInfo} time={time} lastPowerInfo={lastPowerInfo} lastTemperatureInfo={lastTemperatureInfo}/>
+                <LiveInfo 
+                  powerInfo={powerInfo} 
+                  temperatureInfo={temperatureInfo} 
+                  time={time} 
+                  lastPowerInfo={lastPowerInfo} 
+                  lastTemperatureInfo={lastTemperatureInfo}
+                />
               </Route>
               <Route path='/minute'>
                 <MinuteInfo />    

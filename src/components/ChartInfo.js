@@ -10,81 +10,93 @@ class ChartInfo extends React.Component {
   constructor(props) {
     super(props);
 
-    this.data = {
-      labels: [this.props.time],
-      datasets: [
-        {
-          label: 'Power',
-          fill: false,
-          lineTension: 0.1,
-          backgroundColor: 'rgba(63, 81, 181, 1)',
-          borderColor: 'rgba(63, 81, 181, 1)',
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.0,
-          borderJoinStyle: 'miter',
-          pointBorderColor: 'rgba(238, 238, 238, 1)',
-          pointBackgroundColor: 'rgba(0, 0, 0, 1)',
-          pointBorderWidth: 5,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: 'rgba(0, 33, 41, 1)',
-          pointHoverBorderColor: 'rgba(0, 33, 41, 1)',
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: [this.props.powerInfo]
-        },
-        {
-          label: 'Temperature',
-          fill: false,
-          lineTension: 0.5,
-          backgroundColor: 'rgba(0, 204, 118, 1)',
-          borderColor: 'rgba(0, 204, 118, 1)',
-          borderCapStyle: 'butt',
-          borderDash: [],
-          borderDashOffset: 0.5,
-          borderJoinStyle: 'miter',
-          pointBorderColor: 'rgba(238, 238, 238, 1)',
-          pointBackgroundColor:'rgba(0, 0, 0, 1)',
-          pointBorderWidth: 5,
-          pointHoverRadius: 5,
-          pointHoverBackgroundColor: 'rgba(0, 150, 136, 1)',
-          pointHoverBorderColor: 'rgba(0, 150, 136, 1)',
-          pointHoverBorderWidth: 2,
-          pointRadius: 1,
-          pointHitRadius: 10,
-          data: [this.props.temperatureInfo]
-        }
-      ]
-    };
-
     this.state = {
-      powerInfo: [],
-      temperatureInfo: [],
-      time: []
+      powerChartData : {
+        labels: [],
+        datasets: [
+          {
+            label: 'Power',
+            fill: false,
+            lineTension: 0.1,
+            backgroundColor: 'rgba(63, 81, 181, 1)',
+            borderColor: 'rgba(63, 81, 181, 1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.0,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(238, 238, 238, 1)',
+            pointBackgroundColor: 'rgba(0, 0, 0, 1)',
+            pointBorderWidth: 5,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(0, 33, 41, 1)',
+            pointHoverBorderColor: 'rgba(0, 33, 41, 1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: []
+          }
+        ]
+      },
+      temperatureChartData : {
+        labels: [],
+        datasets: [
+          {
+            label: 'Temperature',
+            fill: false,
+            lineTension: 0.5,
+            backgroundColor: 'rgba(0, 204, 118, 1)',
+            borderColor: 'rgba(0, 204, 118, 1)',
+            borderCapStyle: 'butt',
+            borderDash: [],
+            borderDashOffset: 0.5,
+            borderJoinStyle: 'miter',
+            pointBorderColor: 'rgba(238, 238, 238, 1)',
+            pointBackgroundColor:'rgba(0, 0, 0, 1)',
+            pointBorderWidth: 5,
+            pointHoverRadius: 5,
+            pointHoverBackgroundColor: 'rgba(0, 150, 136, 1)',
+            pointHoverBorderColor: 'rgba(0, 150, 136, 1)',
+            pointHoverBorderWidth: 2,
+            pointRadius: 1,
+            pointHitRadius: 10,
+            data: []
+          }
+        ]
+      }
     }
   }
 
   componentDidUpdate(prevProps) {
-    if (this.props.powerInfo !== prevProps.powerInfo) {
-      this.getChartInformation();
+    const { powerInfo, temperatureInfo, time } = this.props;
+    const { powerInfo: prevPowerInfo, temperatureInfo: prevTemperatureInfo, time: prevTime } = prevProps;
+    const { powerChartData, temperatureChartData } = this.state;
+
+    if (powerInfo !== prevPowerInfo || temperatureInfo !== prevTemperatureInfo || time !== prevTime) {
+      this.setState({
+       powerChartData: this.formatChartData(powerChartData, powerInfo, time),
+       temperatureChartData: this.formatChartData(temperatureChartData, temperatureInfo, time)
+      })
     }
   }
 
-  getChartInformation() {
-    this.setState({
-      powerInfo: this.props.powerInfo,
-      temperatureInfo: this.props.temperatureInfo,
-      time: this.props.time
-    })
+  formatChartData( chartData, data, labels) {
+    return {
+      ...chartData,
+      labels: labels,
+      datasets: [
+        { ...chartData.datasets[0], data: data }
+      ]
+    }
   }
 
   render() {
+    const { powerChartData,  temperatureChartData } = this.state;
 
     return(
       <section className="chartInfo__container">
         <h2 className="chartInfo__title">Up date information</h2>
-        <Line className="chartInfo__data" data={this.data}/>
+        <Line className="chartInfo__data" data={powerChartData}/>
+        <Line className="chartInfo__data" data={temperatureChartData}/>
       </section>
   )
   }
