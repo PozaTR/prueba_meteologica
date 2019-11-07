@@ -5,11 +5,11 @@ import LastInfo from './LastInfo';
 import '../styles/components/liveInfo.scss';
 
 const LiveInfo = (props) => {
-  const {  lastPowerInfo, lastTemperatureInfo} = props;
+  const {  powerInfo, temperatureInfo, time, lastPowerInfo, lastTemperatureInfo} = props;
 
   return(
       <div>
-        <ChartInfo />
+        <ChartInfo powerInfo={powerInfo} temperatureInfo={temperatureInfo} time={time}/>
         <div className="lastInfo__wrap">
           <h2 className="lastInfo__title">Last information</h2>
           <div className="lastInfo__container">

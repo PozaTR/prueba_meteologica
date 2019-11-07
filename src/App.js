@@ -16,7 +16,10 @@ class App extends React.Component {
         temperature: [],
       },
       lastPowerInfo: {},
-      lastTemperatureInfo: {}
+      lastTemperatureInfo: {},
+      powerInfo: [],
+      temperatureInfo: [],
+      time: []
    }
  }
 
@@ -24,13 +27,22 @@ class App extends React.Component {
    setInterval(() => {
     meteoService.fetch().then(resp => {
       this.setState(prevState => {
-        const { liveData: prevLiveData } = prevState
-        prevLiveData.power.push(resp.power)
-        prevLiveData.temperature.push(resp.temperature)
+        const { liveData: prevLiveData } = prevState;
+        prevLiveData.power.push(resp.power);
+        prevLiveData.temperature.push(resp.temperature);
+
+        const powerValue = prevLiveData.power.map(power => power.value);
+        const temperatureValue = prevLiveData.temperature.map(temperature => temperature.value);
+        const time = prevLiveData.power.map(power => power.time)
+
+
         return {
           liveData: prevLiveData,
           lastPowerInfo: resp.power,
-          lastTemperatureInfo: resp.temperature
+          lastTemperatureInfo: resp.temperature,
+          powerInfo: powerValue,
+          temperatureInfo: temperatureValue,
+          time: time
          }
        })
     })
@@ -38,7 +50,7 @@ class App extends React.Component {
  }
 
  render() {
-  const { lastPowerInfo, lastTemperatureInfo } = this.state;
+  const { powerInfo, temperatureInfo, time, lastPowerInfo, lastTemperatureInfo } = this.state;
 
    return(
      <>
@@ -53,7 +65,7 @@ class App extends React.Component {
          <div>
             <Switch>
               <Route exact path='/'>
-                <LiveInfo lastPowerInfo={lastPowerInfo} lastTemperatureInfo={lastTemperatureInfo}/>
+                <LiveInfo powerInfo={powerInfo} temperatureInfo={temperatureInfo} time={time} lastPowerInfo={lastPowerInfo} lastTemperatureInfo={lastTemperatureInfo}/>
               </Route>
               <Route path='/minute'>
                 <MinuteInfo />    
