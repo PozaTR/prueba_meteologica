@@ -3,14 +3,15 @@ import PropTypes from 'prop-types';
 import '../styles/components/lastInfo.scss';
 
 const LastInfo = (props) => {
-  const { children, text } = props;
+  const { children, value, unit } = props;
 
   return(
     <div className="lastInfo">
       <div className="lastInfo__icon">
         {children}
       </div>
-      <p className="lastInfo__information">{text}</p>
+      <p className="lastInfo__information">{value}</p>
+      <p className="lastInfo__information">{unit}</p>
     </div>
   )
 }

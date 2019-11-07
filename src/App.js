@@ -11,10 +11,11 @@ class App extends React.Component {
    super(props)
 
    this.state = {
-      liveData: {
-        power: [],
-        temperature: []
-      }
+      lastPowerInfo: {},
+      lastTemperatureInfo: {},
+      powerInfo: [],
+      temperatureInfo: [],
+      time: []
    }
  }
 
@@ -22,11 +23,18 @@ class App extends React.Component {
    setInterval(() => {
     meteoService.fetch().then(resp => {
       this.setState(prevState => {
-        const { liveData: prevLiveData } = prevState
-        prevLiveData.power.push(resp.power)
-        prevLiveData.temperature.push(resp.temperature)
+        const {
+          powerInfo: prevPowerInfo, 
+          temperatureInfo: prevTemperatureInfo, 
+          time: prevTime
+         } = prevState;
+
         return {
-          liveData: prevLiveData
+          lastPowerInfo: resp.power,
+          lastTemperatureInfo: resp.temperature,
+          powerInfo: [...prevPowerInfo, resp.power.value],
+          temperatureInfo: [...prevTemperatureInfo, resp.temperature.value],
+          time: [...prevTime, resp.power.time]
          }
        })
     })
@@ -34,6 +42,8 @@ class App extends React.Component {
  }
 
  render() {
+  const { powerInfo, temperatureInfo, time, lastPowerInfo, lastTemperatureInfo } = this.state;
+
    return(
      <>
        <header className="header">
@@ -46,13 +56,17 @@ class App extends React.Component {
        <main className="main">
          <div>
             <Switch>
-              <Route exact path='/' render={RouterProps => (
-                <LiveInfo />
-              )}>
+              <Route exact path='/'>
+                <LiveInfo 
+                  powerInfo={powerInfo} 
+                  temperatureInfo={temperatureInfo} 
+                  time={time} 
+                  lastPowerInfo={lastPowerInfo} 
+                  lastTemperatureInfo={lastTemperatureInfo}
+                />
               </Route>
-              <Route path='/minute' render={RouterProps => (
+              <Route path='/minute'>
                 <MinuteInfo />    
-              )}>
               </Route>
             </Switch>
          </div>
