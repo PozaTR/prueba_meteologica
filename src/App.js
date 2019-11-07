@@ -1,28 +1,35 @@
 import React from 'react';
 import { Switch, Route, Link } from 'react-router-dom';
-import fetchData from './service/fetchData';
+import MeteoService from './service/MeteoService';
 import LiveInfo from './components/LiveInfo';
 import MinuteInfo from './components/MinuteInfo';
 import './styles/components/app.scss';
 
-const service = new fetchData()
+const meteoService = new MeteoService()
 class App extends React.Component {
  constructor(props) {
    super(props)
 
    this.state = {
-      data: {}
+      liveData: {
+        power: [],
+        temperature: []
+      }
    }
  }
 
  componentDidMount() {
    setInterval(() => {
-    service.fetch().then(response => 
-      console.log(response))
-      const test = {...response}
-      this.setState({
-        data: test
+    meteoService.fetch().then(resp => {
+      this.setState(prevState => {
+        const { liveData: prevLiveData } = prevState
+        prevLiveData.power.push(resp.power)
+        prevLiveData.temperature.push(resp.temperature)
+        return {
+          liveData: prevLiveData
+         }
        })
+    })
   }, 5000);
  }
 
