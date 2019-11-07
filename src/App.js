@@ -15,8 +15,8 @@ class App extends React.Component {
         power: [],
         temperature: [],
       },
-      lastPowerInfo: [],
-      lastTemperature: []
+      lastPowerInfo: {},
+      lastTemperatureInfo: {}
    }
  }
 
@@ -27,14 +27,10 @@ class App extends React.Component {
         const { liveData: prevLiveData } = prevState
         prevLiveData.power.push(resp.power)
         prevLiveData.temperature.push(resp.temperature)
-        const lastPowerValue = prevLiveData.power.map(power => power.value);
-        const lastPowerUnit = prevLiveData.power.map(power => power.unit);
-        const lastTemperatureValue = prevLiveData.temperature.map(temperature => temperature.value);
-        const lastTemperatureUnit = prevLiveData.temperature.map(temperature => temperature.unit)
         return {
           liveData: prevLiveData,
-          lastPowerInfo: lastPowerValue,
-          lastTemperature: lastTemperatureValue
+          lastPowerInfo: resp.power,
+          lastTemperatureInfo: resp.temperature
          }
        })
     })
@@ -42,7 +38,7 @@ class App extends React.Component {
  }
 
  render() {
-  const { lastPowerInfo, lastTemperature } = this.state;
+  const { lastPowerInfo, lastTemperatureInfo } = this.state;
 
    return(
      <>
@@ -57,7 +53,7 @@ class App extends React.Component {
          <div>
             <Switch>
               <Route exact path='/'>
-                <LiveInfo />
+                <LiveInfo lastPowerInfo={lastPowerInfo} lastTemperatureInfo={lastTemperatureInfo}/>
               </Route>
               <Route path='/minute'>
                 <MinuteInfo />    
