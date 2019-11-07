@@ -5,6 +5,7 @@ import LastInfo from './LastInfo';
 import '../styles/components/liveInfo.scss';
 
 const LiveInfo = (props) => {
+  const { } = props;
 
   return(
       <div>
@@ -12,7 +13,7 @@ const LiveInfo = (props) => {
         <div className="lastInfo__wrap">
           <h2 className="lastInfo__title">Last information</h2>
           <div className="lastInfo__container">
-            <LastInfo className="lastInfo" text="40kW">
+            <LastInfo className="lastInfo" text="30Vw">
               <i className="fas fa-bolt"></i>
             </LastInfo>
             <LastInfo className="lastInfo" text="30º">

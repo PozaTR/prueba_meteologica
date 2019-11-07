@@ -53,6 +53,8 @@ const data = {
 };
 
 class ChartInfo extends React.Component {
+  c
+
   render() {
     return(
       <section className="chartInfo__container">
