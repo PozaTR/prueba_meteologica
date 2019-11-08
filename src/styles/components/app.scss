@@ -1,20 +1,25 @@
 @import '../core/variables';
+$headerHeight-mobile: $gap-xxl;
 $headerHeight: $gap-xl;
 
 .header {
   align-items: center;
   background: transparent;
-  background: linear-gradient(to left, $secundary, $primary-dark);
+  background: linear-gradient(to left, $secondary, $primary-dark);
   display: flex;
   flex-wrap: wrap;
   font-size: 18px;
   justify-content: space-between;
   line-height: 1;
-  min-height: $headerHeight;
+  min-height: $headerHeight-mobile;
   padding: $gap-md;
   position: fixed;
   width: 100%;
   z-index: 1;
+
+  @media all and (min-width: $tablet) {
+    min-height: $headerHeight;
+  }
 
   &__title {
     color: $white;
@@ -59,12 +64,16 @@ $headerHeight: $gap-xl;
 
 .main {
   flex-grow: 1;
-  padding-top: $headerHeight;
+  padding-top: $headerHeight-mobile;
+
+  @media all and (min-width: $tablet) {
+    padding-top: $headerHeight;
+  }
 }
 
 .footer {
   color:rgba(255, 255, 255, 0.3);
-  background-color: $secundary-dark;
+  background-color: $secondary-dark;
   padding: $gap-md;
   text-align: center;
 }

@@ -2,21 +2,27 @@
 @import '../core/mixins';
 
 .lastInfo {
-  @include flex-column;
-}
+  $iconCircleSize: 100px;
+  
+  align-items: center;
+  display: flex;
+  max-width: 300px;
+  width: 100%;
 
-.lastInfo__icon {
-  background-color: $white;
-  border-radius: 50%;
-  box-shadow: 1px 1px 2px $ligth;
-  color: $primary;
-  font-size: 64px;
-  height: 200px;
-  width: 200px;
-  @include flex-center;
-}
-
-.lastInfo__information {
-  color: rgba($secundary-dark, 0.6);
-  font-size: 64px;
+  &__icon {
+    @include flex-center;
+    background-color: $white;
+    border-radius: 50%;
+    box-shadow: 1px 1px 2px $ligth;
+    color: $primary;
+    font-size: 42px;
+    height: $iconCircleSize;
+    margin-right: $gap-md;
+    width: $iconCircleSize;
+  }
+  
+  &__information {
+    color: rgba($secondary-dark, 0.6);
+    font-size: 24px;
+  }
 }

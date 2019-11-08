@@ -1,25 +1,32 @@
 @import '../core/variables';
 @import '../core/mixins';
 
-.lastInfo__title {
-  @include section-title;
-}
 
-.lastInfo__wrap {
+.liveInfo {
+  @include flex-column;
   background-color: $ligth;
   padding: $gap-lg;
-  @include flex-column;
-}
 
-.lastInfo__container {
-  display: flex;
-  @include flex-column;
-
-  @media all and (min-width: $tablet) {
-    flex-direction: row;
+  &__title {
+    @include section-title;
   }
-}
+  
+  &__container {
+    @include flex-column;
+    display: flex;
+    width: 100%;
+  
+    @media all and (min-width: $tablet) {
+      flex-direction: row;
+      justify-content: space-evenly;
+    }
+  }
+  
+  .lastInfo {
+    padding-bottom: $gap-md;
 
-.lastInfo {
-  padding: $gap-lg;
+    @media all and (min-width: $tablet) {
+      width: auto;
+    }
+  }
 }

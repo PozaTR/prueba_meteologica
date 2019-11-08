@@ -21,7 +21,7 @@ class fetchData {
         },
         temperature: {
           unit: 'C',  
-          value: this._dkToC(temperature.value),
+          value: this.dKToC(temperature.value),
           time: temperature.time
         }
       };
@@ -32,7 +32,7 @@ class fetchData {
     })
   }
 
-  _dkToC(dkValue) {
+  dKToC(dkValue) {
     return ((dkValue / 10) - 273).toFixed(2)
   }
 }

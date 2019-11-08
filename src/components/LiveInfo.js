@@ -20,16 +20,16 @@ const LiveInfo = (props) => {
           temperatureInfo={temperatureInfo} 
           time={time}
         />
-        <div className="lastInfo__wrap">
-          <h2 className="lastInfo__title">Last information</h2>
-          <div className="lastInfo__container">
-            <LastInfo className="lastInfo" 
+        <div className="liveInfo">
+          <h2 className="liveInfo__title">Last information</h2>
+          <div className="liveInfo__container">
+            <LastInfo className="liveInfo__lastInfo" 
               value={lastPowerInfo.value} 
               unit={lastPowerInfo.unit}
             >
               <i className="fas fa-bolt"></i>
             </LastInfo>
-            <LastInfo className="lastInfo" 
+            <LastInfo className="liveInfo__lastInfo" 
               value={lastTemperatureInfo.value} 
               unit={lastTemperatureInfo.unit}
             >
