@@ -1,4 +1,5 @@
 @import '../core/variables';
+$headerHeight-mobile: $gap-xxl;
 $headerHeight: $gap-xl;
 
 .header {
@@ -10,11 +11,15 @@ $headerHeight: $gap-xl;
   font-size: 18px;
   justify-content: space-between;
   line-height: 1;
-  min-height: $headerHeight;
+  min-height: $headerHeight-mobile;
   padding: $gap-md;
   position: fixed;
   width: 100%;
   z-index: 1;
+
+  @media all and (min-width: $tablet) {
+    min-height: $headerHeight;
+  }
 
   &__title {
     color: $white;
@@ -59,7 +64,11 @@ $headerHeight: $gap-xl;
 
 .main {
   flex-grow: 1;
-  padding-top: $headerHeight;
+  padding-top: $headerHeight-mobile;
+
+  @media all and (min-width: $tablet) {
+    padding-top: $headerHeight;
+  }
 }
 
 .footer {
