@@ -94,9 +94,26 @@ class ChartInfo extends React.Component {
 
     return(
       <section className="chartInfo__container">
-        <h2 className="chartInfo__title">Up date information</h2>
-        <Line className="chartInfo__data" data={powerChartData}/>
-        <Line className="chartInfo__data" data={temperatureChartData}/>
+        <h2 className="chartInfo__title">Live stream information</h2>
+        <div className="chartInfo__wrapper">
+          <h3>Power</h3>
+          <Line className="chartInfo__data"
+            data={powerChartData}
+            width={100}
+            height={50}
+            legend={{display: false}}
+          />
+        </div>
+       <div className="chartInfo__wrapper">
+          <h3>Temperature</h3>
+          <Line className="chartInfo__data"
+            data={temperatureChartData}
+            width={100}
+            height={50}
+            legend={{display: false}}
+          />  
+       </div>
+       
       </section>
   )
   }

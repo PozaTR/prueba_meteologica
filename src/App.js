@@ -58,9 +58,9 @@ class App extends React.Component {
             <Switch>
               <Route exact path='/'>
                 <LiveInfo 
-                  powerInfo={powerInfo} 
-                  temperatureInfo={temperatureInfo} 
-                  time={time} 
+                  powerInfo={powerInfo.slice(-30)} 
+                  temperatureInfo={temperatureInfo.slice(-30)} 
+                  time={time.slice(-30)} 
                   lastPowerInfo={lastPowerInfo} 
                   lastTemperatureInfo={lastTemperatureInfo}
                 />
