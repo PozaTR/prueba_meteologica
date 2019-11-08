@@ -14,8 +14,8 @@
 }
 
 @mixin section-title {
-  color: rgba($secundary-dark, 0.9);
-  font-size: 56px;
+  color: rgba($secondary-dark, 0.9);
+  font-size: 26px;
   font-weight: 900;
-  padding: $gap-md;
+  padding-bottom: $gap-md;
 }

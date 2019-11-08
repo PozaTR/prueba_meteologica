@@ -3,18 +3,20 @@
 
 
 .chartInfo {
+  padding: $gap-lg;
+  text-align: center;
 
-  &__container {
-    padding: $gap-lg;
-    text-align: center;
-  }
-  
   &__title {
     @include section-title;
   }
   
   &__wrapper {
-    max-width: 920px;
+    padding-bottom: $gap-lg;
+  }
+
+  &__chart-name {
+    font-size: 18px;
+    padding-bottom: $gap-md;
   }
 }
 

@@ -4,7 +4,7 @@ $headerHeight: $gap-xl;
 .header {
   align-items: center;
   background: transparent;
-  background: linear-gradient(to left, $secundary, $primary-dark);
+  background: linear-gradient(to left, $secondary, $primary-dark);
   display: flex;
   flex-wrap: wrap;
   font-size: 18px;
@@ -64,7 +64,7 @@ $headerHeight: $gap-xl;
 
 .footer {
   color:rgba(255, 255, 255, 0.3);
-  background-color: $secundary-dark;
+  background-color: $secondary-dark;
   padding: $gap-md;
   text-align: center;
 }
