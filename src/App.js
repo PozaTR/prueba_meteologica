@@ -23,6 +23,7 @@ class App extends React.Component {
  }
 
  componentDidMount() {
+   this.requestInfo ();
    setInterval(() => {
     this.requestInfo()
   }, 5000);
@@ -110,9 +111,9 @@ class App extends React.Component {
               </Route>
               <Route path='/minute'>
                 <MinuteInfo 
-                  minutePowerInfo={minutePowerInfo}
-                  minuteTemperatureInfo={minuteTemperatureInfo}
-                  minuteTime={minuteTime}
+                  minutePowerInfo={minutePowerInfo.slice(-8)}
+                  minuteTemperatureInfo={minuteTemperatureInfo.slice(-8)}
+                  minuteTime={minuteTime.slice(-8)}
                 />    
               </Route>
             </Switch>

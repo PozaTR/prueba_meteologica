@@ -18,7 +18,8 @@ const LastInfo = (props) => {
 
 LastInfo.propTypes = {
   children: PropTypes.object.isRequired,
-  text: PropTypes.string.isRequired
+  value: PropTypes.string,
+  unit: PropTypes.string
 }
 
 export default LastInfo;
