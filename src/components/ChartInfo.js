@@ -66,15 +66,43 @@ class ChartInfo extends React.Component {
     }
   }
 
+  componentDidMount() {
+    const { 
+      powerInfo, 
+      temperatureInfo, 
+      time 
+    } = this.props;
+    const { 
+      powerChartData, 
+      temperatureChartData 
+    } = this.state;
+
+    this.setState({
+      powerChartData: this.formatChartData(powerChartData, powerInfo, time),
+      temperatureChartData: this.formatChartData(temperatureChartData, temperatureInfo, time)
+    })
+  }
+
   componentDidUpdate(prevProps) {
-    const { powerInfo, temperatureInfo, time } = this.props;
-    const { powerInfo: prevPowerInfo, temperatureInfo: prevTemperatureInfo, time: prevTime } = prevProps;
-    const { powerChartData, temperatureChartData } = this.state;
+    const { 
+      powerInfo, 
+      temperatureInfo, 
+      time 
+    } = this.props;
+    const { 
+      powerInfo: prevPowerInfo, 
+      temperatureInfo: prevTemperatureInfo, 
+      time: prevTime 
+    } = prevProps;
+    const { 
+      powerChartData, 
+      temperatureChartData 
+    } = this.state;
 
     if (powerInfo !== prevPowerInfo || temperatureInfo !== prevTemperatureInfo || time !== prevTime) {
       this.setState({
-       powerChartData: this.formatChartData(powerChartData, powerInfo, time),
-       temperatureChartData: this.formatChartData(temperatureChartData, temperatureInfo, time)
+        powerChartData: this.formatChartData(powerChartData, powerInfo, time),
+        temperatureChartData: this.formatChartData(temperatureChartData, temperatureInfo, time)
       })
     }
   }
@@ -90,7 +118,10 @@ class ChartInfo extends React.Component {
   }
 
   render() {
-    const { powerChartData,  temperatureChartData } = this.state;
+    const { 
+      powerChartData,  
+      temperatureChartData 
+    } = this.state;
 
     return(
       <section className="chartInfo">
@@ -145,6 +176,12 @@ class ChartInfo extends React.Component {
       </section>
   )
   }
+}
+
+ChartInfo.propTypes = {
+  powerInfo: PropTypes.arrayOf(PropTypes.string).isRequired,
+  temperatureInfo: PropTypes.arrayOf(PropTypes.string).isRequired,
+  time: PropTypes.arrayOf(PropTypes.string).isRequired,
 }
 
 export default ChartInfo;

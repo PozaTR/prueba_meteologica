@@ -41,4 +41,12 @@ const LiveInfo = (props) => {
   )
 }
 
+LiveInfo.propTypes = {
+  powerInfo: PropTypes.arrayOf(PropTypes.string).isRequired,
+  temperatureInfo: PropTypes.arrayOf(PropTypes.string).isRequired,
+  time: PropTypes.arrayOf(PropTypes.string).isRequired,
+  lastPowerInfo: PropTypes.object.isRequired,
+  lastTemperatureInfo: PropTypes.object.isRequired
+}
+
 export default LiveInfo;

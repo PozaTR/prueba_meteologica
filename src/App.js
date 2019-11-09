@@ -15,34 +15,78 @@ class App extends React.Component {
       lastTemperatureInfo: {},
       powerInfo: [],
       temperatureInfo: [],
-      time: []
+      time: [],
+      minutePowerInfo: [],
+      minuteTemperatureInfo: [],
+      minuteTime: []
    }
  }
 
  componentDidMount() {
+   this.requestInfo ();
    setInterval(() => {
-    meteoService.fetch().then(resp => {
-      this.setState(prevState => {
-        const {
-          powerInfo: prevPowerInfo, 
-          temperatureInfo: prevTemperatureInfo, 
-          time: prevTime
-         } = prevState;
-
-        return {
-          lastPowerInfo: resp.power,
-          lastTemperatureInfo: resp.temperature,
-          powerInfo: [...prevPowerInfo, resp.power.value],
-          temperatureInfo: [...prevTemperatureInfo, resp.temperature.value],
-          time: [...prevTime, resp.power.time]
-         }
-       })
-    })
+    this.requestInfo()
   }, 5000);
  }
 
+ requestInfo () {
+  meteoService.fetch().then(resp => {
+    this.setState(prevState => {
+      const {
+        powerInfo: prevPowerInfo, 
+        temperatureInfo: prevTemperatureInfo, 
+        time: prevTime,
+        minutePowerInfo: prevMinutePowerInfo,
+        minuteTemperatureInfo: prevMinuteTemperatureInfo,
+        minuteTime: prevMinuteTime
+       } = prevState;
+
+      const powerInfo =  [...prevPowerInfo, resp.power.value];
+      const temperatureInfo =  [...prevTemperatureInfo, resp.temperature.value];
+      const time = [...prevTime, resp.power.time];
+      const minutePowerInfo = [...prevMinutePowerInfo];
+      const minuteTemperatureInfo = [...prevMinuteTemperatureInfo];
+      const minuteTime = [...prevMinuteTime];
+
+      if(powerInfo.length % 12 === 0) {
+        const averagePower = powerInfo.slice(-12).reduce((acc, it) => acc + parseFloat(it), 0) / 12;
+        minutePowerInfo.push(averagePower.toFixed(3));
+        
+      }
+      if(temperatureInfo.length % 12 === 0) {
+        const averageTemperature = temperatureInfo.slice(-12).reduce((acc, it) => acc + parseFloat(it), 0) / 12;
+        minuteTemperatureInfo.push(averageTemperature.toFixed(3));
+      }
+
+      if(time.length % 12 === 0) {
+        minuteTime.push(resp.power.time)
+      }
+
+      return {
+        lastPowerInfo: resp.power,
+        lastTemperatureInfo: resp.temperature,
+        powerInfo,
+        temperatureInfo,
+        time,
+        minutePowerInfo,
+        minuteTemperatureInfo,
+        minuteTime
+       }
+     })
+  })
+ }
+
  render() {
-  const { powerInfo, temperatureInfo, time, lastPowerInfo, lastTemperatureInfo } = this.state;
+  const { 
+    powerInfo, 
+    temperatureInfo, 
+    time, 
+    lastPowerInfo, 
+    lastTemperatureInfo ,
+    minutePowerInfo,
+    minuteTemperatureInfo,
+    minuteTime
+  } = this.state;
 
    return(
      <>
@@ -66,7 +110,11 @@ class App extends React.Component {
                 />
               </Route>
               <Route path='/minute'>
-                <MinuteInfo />    
+                <MinuteInfo 
+                  minutePowerInfo={minutePowerInfo.slice(-8)}
+                  minuteTemperatureInfo={minuteTemperatureInfo.slice(-8)}
+                  minuteTime={minuteTime.slice(-8)}
+                />    
               </Route>
             </Switch>
          </div>
