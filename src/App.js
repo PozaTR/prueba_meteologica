@@ -17,49 +17,62 @@ class App extends React.Component {
       temperatureInfo: [],
       time: [],
       minutePowerInfo: [],
-      minuteTemperatureInfo: []
+      minuteTemperatureInfo: [],
+      minuteTime: []
    }
  }
 
  componentDidMount() {
    setInterval(() => {
-    meteoService.fetch().then(resp => {
-      this.setState(prevState => {
-        const {
-          powerInfo: prevPowerInfo, 
-          temperatureInfo: prevTemperatureInfo, 
-          time: prevTime,
-          minutePowerInfo: prevMinutePowerInfo,
-          minuteTemperatureInfo: prevMinuteTemperatureInfo
-         } = prevState;
-
-        const powerInfo =  [...prevPowerInfo, resp.power.value];
-        const temperatureInfo =  [...prevTemperatureInfo, resp.temperature.value];
-        const time = [...prevTime, resp.power.time];
-        const minutePowerInfo = [...prevMinutePowerInfo];
-        const minuteTemperatureInfo = [...prevMinuteTemperatureInfo];
-
-        if(powerInfo.length % 12 === 0) {
-          const averagePower = powerInfo.slice(-12).reduce((acc, it) => acc + parseFloat(it), 0) / 12;
-          minutePowerInfo.push(averagePower.toFixed(3));
-        }
-        if(temperatureInfo.length % 12 === 0) {
-          const averageTemperature = temperatureInfo.slice(-12).reduce((acc, it) => acc + parseFloat(it), 0) / 12;
-          minuteTemperatureInfo.push(averageTemperature.toFixed(3));
-        }
-
-        return {
-          lastPowerInfo: resp.power,
-          lastTemperatureInfo: resp.temperature,
-          powerInfo,
-          temperatureInfo,
-          time,
-          minutePowerInfo,
-          minuteTemperatureInfo
-         }
-       })
-    })
+    this.requestInfo()
   }, 5000);
+ }
+
+ requestInfo () {
+  meteoService.fetch().then(resp => {
+    this.setState(prevState => {
+      const {
+        powerInfo: prevPowerInfo, 
+        temperatureInfo: prevTemperatureInfo, 
+        time: prevTime,
+        minutePowerInfo: prevMinutePowerInfo,
+        minuteTemperatureInfo: prevMinuteTemperatureInfo,
+        minuteTime: prevMinuteTime
+       } = prevState;
+
+      const powerInfo =  [...prevPowerInfo, resp.power.value];
+      const temperatureInfo =  [...prevTemperatureInfo, resp.temperature.value];
+      const time = [...prevTime, resp.power.time];
+      const minutePowerInfo = [...prevMinutePowerInfo];
+      const minuteTemperatureInfo = [...prevMinuteTemperatureInfo];
+      const minuteTime = [...prevMinuteTime];
+
+      if(powerInfo.length % 12 === 0) {
+        const averagePower = powerInfo.slice(-12).reduce((acc, it) => acc + parseFloat(it), 0) / 12;
+        minutePowerInfo.push(averagePower.toFixed(3));
+        
+      }
+      if(temperatureInfo.length % 12 === 0) {
+        const averageTemperature = temperatureInfo.slice(-12).reduce((acc, it) => acc + parseFloat(it), 0) / 12;
+        minuteTemperatureInfo.push(averageTemperature.toFixed(3));
+      }
+
+      if(time.length % 12 === 0) {
+        minuteTime.push(resp.power.time)
+      }
+
+      return {
+        lastPowerInfo: resp.power,
+        lastTemperatureInfo: resp.temperature,
+        powerInfo,
+        temperatureInfo,
+        time,
+        minutePowerInfo,
+        minuteTemperatureInfo,
+        minuteTime
+       }
+     })
+  })
  }
 
  render() {
@@ -70,7 +83,8 @@ class App extends React.Component {
     lastPowerInfo, 
     lastTemperatureInfo ,
     minutePowerInfo,
-    minuteTemperatureInfo
+    minuteTemperatureInfo,
+    minuteTime
   } = this.state;
 
    return(
@@ -98,6 +112,7 @@ class App extends React.Component {
                 <MinuteInfo 
                   minutePowerInfo={minutePowerInfo}
                   minuteTemperatureInfo={minuteTemperatureInfo}
+                  minuteTime={minuteTime}
                 />    
               </Route>
             </Switch>
