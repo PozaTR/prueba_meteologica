@@ -1,5 +1,3 @@
-import { reject } from 'q';
-
 const JSON = require('./data.json');
 
 class MeteoService {
