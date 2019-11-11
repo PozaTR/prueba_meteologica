@@ -11,7 +11,7 @@ First page (live stream) where you have two sections:
 - First section:  you can watch information about power and temperature in a line chart which update each five second.
 - Second section: show the last information you have received.
 
-![Alt text](./assets/live-stream-mobile/img.png?raw=true "Live stream mobile")
+![Alt text](../assets/live-stream-mobile/img.png?raw=true "Live stream mobile")
 
 Second page (summary by minute) where you only have one section:
 - In that section you can watch the average minute information in a bar chart.
