@@ -91,7 +91,7 @@ class App extends React.Component {
    return(
      <>
        <header className="header">
-        <h1 className="header__title">Meteológica S.A</h1>
+        <h1 className="header__title">Meteologica S.A</h1>
         <nav className="header__menu">
           <Link className="header__link" to='/'>live stream</Link>
           <Link className="header__link" to='/minute'>summary by minute</Link>

@@ -1,4 +1,4 @@
-# Technical proof for Meteologica S.A
+# Technical test for Meteologica S.A
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
