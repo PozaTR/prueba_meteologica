@@ -13,8 +13,15 @@ First page (live stream) where you have two sections:
 
 ![Live stream mobile](https://raw.github.com/PozaTR/prueba_meteologica/readme/assets/live-stream-mobile.png?raw=true "Live stream mobile")
 
+![Live stream desktop](https://raw.github.com/PozaTR/prueba_meteologica/readme/assets/live-stream-desktop.png?raw=true "Live stream desktop")
+
 Second page (summary by minute) where you only have one section:
 - In that section you can watch the average minute information in a bar chart.
+
+![summary by minute-mobile](https://raw.github.com/PozaTR/prueba_meteologica/readme/assets/summary-by-minute-mobile.png?raw=true "summary by minute mobile")
+
+![summary by minute-desktop](https://raw.github.com/PozaTR/prueba_meteologica/readme/assets/summary-by-minute-desktop.png?raw=true "summary by minute desktop")
+
 
 
 ## Project structure
