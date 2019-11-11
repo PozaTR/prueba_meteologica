@@ -11,16 +11,16 @@ You have two different pages: Live stream and summary by minute.
 - First section:  you can watch information about power and temperature in a line chart which update each five second. There only can be shown last twelve values received to improve user experience but that value can be handle in future development.
 - Second section: show the last information you have received.
 
-![Live stream mobile](https://raw.github.com/PozaTR/prueba_meteologica/readme/assets/live-stream-mobile.png?raw=true "Live stream mobile")
+![Live stream mobile](https://raw.github.com/PozaTR/prueba_meteologica/master/assets/live-stream-mobile.png?raw=true "Live stream mobile")
 
-![Live stream desktop](https://raw.github.com/PozaTR/prueba_meteologica/readme/assets/live-stream-desktop.png?raw=true "Live stream desktop")
+![Live stream desktop](https://raw.github.com/PozaTR/prueba_meteologica/master/assets/live-stream-desktop.png?raw=true "Live stream desktop")
 
 ### Second page: summary by minute
 - In that section you can see the average information by minute in a bar chart. In this case the limit is set to eigth values to improve ux.
 
-![summary by minute-mobile](https://raw.github.com/PozaTR/prueba_meteologica/readme/assets/summary-by-minute-mobile.png?raw=true "summary by minute mobile")
+![summary by minute-mobile](https://raw.github.com/PozaTR/prueba_meteologica/master/assets/summary-by-minute-mobile.png?raw=true "summary by minute mobile")
 
-![summary by minute-desktop](https://raw.github.com/PozaTR/prueba_meteologica/readme/assets/summary-by-minute-desktop.png?raw=true "summary by minute desktop")
+![summary by minute-desktop](https://raw.github.com/PozaTR/prueba_meteologica/master/assets/summary-by-minute-desktop.png?raw=true "summary by minute desktop")
 
 
 
