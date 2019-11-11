@@ -1,68 +1,70 @@
+# Technical test for Meteologica S.A
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-## Available Scripts
+## What is this project about?
 
-In the project directory, you can run:
+It is a web app made with React to show information about power and temperature.
+You have two different pages: Live stream and summary by minute.
+
+### First page: Live stream
+- First section:  you can watch information about power and temperature in a line chart which update each five second. There only can be shown last twelve values received to improve user experience but that value can be handle in future development.
+- Second section: show the last information you have received.
+
+![Live stream mobile](https://raw.github.com/PozaTR/prueba_meteologica/master/assets/live-stream-mobile.png?raw=true "Live stream mobile")
+
+![Live stream desktop](https://raw.github.com/PozaTR/prueba_meteologica/master/assets/live-stream-desktop.png?raw=true "Live stream desktop")
+
+### Second page: summary by minute
+- In that section you can see the average information by minute in a bar chart. In this case the limit is set to eigth values to improve ux.
+
+![summary by minute-mobile](https://raw.github.com/PozaTR/prueba_meteologica/master/assets/summary-by-minute-mobile.png?raw=true "summary by minute mobile")
+
+![summary by minute-desktop](https://raw.github.com/PozaTR/prueba_meteologica/master/assets/summary-by-minute-desktop.png?raw=true "summary by minute desktop")
+
+
+
+## Project structure
+
+The project includes a data json file, one mock service and five components.
+
+### Simulated service
+
+MeteoService: it is a class where you prepare information you need like power and temperature. There is a method with a promise which resolves a single data line from data.json example file.
+That is made like that because if in the future you will fetch to real service everything will work seamlessly.
+Temperature values have been changed from data.json because initially they were in dK units and, for ux reasons, converted to C.
+
+### Components
+
+- App: you have the main structure and where the info is fetched. Power and temperature information is prepared to use in each component. Also yo can find the state where you keep and organize the information.
+
+- LiveInfo: it is a dummy component which represents first page of the app called live stream, divided in two section and send different information to each childs (ChartInfo and LastInfo).
+- ChartInfo: it is a class component which draw power and temperature info each five seconds in a line chart.
+- LastInfo: it is a dummy component which received information by props and icon by children.
+- MinuteInfo: it is a class component which draw average information by minute in a bar chart.
+
+
+## Technologies
+
+-React
+-Sass
+-Html
+-Git
+-ES6
+
+## How to run the project
+
+In the project directory, you need run:
+
+### `npm install`
+
+To install all the project dependencies.
 
 ### `npm start`
 
-Runs the app in the development mode.<br />
+Runs the app in the development mode.<br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.<br />
+The page will reload if you make edits.<br>
 You will also see any lint errors in the console.
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify

@@ -2,7 +2,7 @@ import { reject } from 'q';
 
 const JSON = require('./data.json');
 
-class fetchData {
+class MeteoService {
   constructor () {
     this.data = JSON;
     this.count = 0
@@ -37,4 +37,4 @@ class fetchData {
   }
 }
 
-export default fetchData;
+export default MeteoService;
